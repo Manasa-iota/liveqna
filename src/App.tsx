@@ -1,4 +1,4 @@
-import Container from "./components/Container"
+import Container from "./components/layout/Container"
 import HashTagList from "./components/HashTagList"
 import { useEffect, useState } from "react"
 import { type feedbackItemProp } from "./lib/types"

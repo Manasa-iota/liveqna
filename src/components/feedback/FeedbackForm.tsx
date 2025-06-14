@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { MAX_CHARACTERS} from "../lib/constants"
+import { MAX_CHARACTERS} from "../../lib/constants"
 export default function FeedbackForm({ handleAddToList }: { handleAddToList: (text: string) => void }) {
   const [text,setText] = useState("");
   const remainingCharacters = MAX_CHARACTERS - text.length;

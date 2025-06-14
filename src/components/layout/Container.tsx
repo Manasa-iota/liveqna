@@ -1,5 +1,5 @@
-import type { feedbackItemProp } from "../lib/types";
-import FeedbackList from "./FeedbackList";
+import type { feedbackItemProp } from "../../lib/types";
+import FeedbackList from "../feedback/FeedbackList";
 import Header from "./Header";
 
 export type ContainerProps =  {
