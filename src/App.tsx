@@ -1,5 +1,5 @@
 import Container from "./components/layout/Container"
-import HashtagList from "./components/hashtag/HashTagList";
+import HashtagList from "./components/hashtag/HashtagList";
 import { useEffect, useState } from "react"
 import { type feedbackItemProp } from "./lib/types"
 
@@ -24,7 +24,7 @@ const filteredFeedbackItems = selectedCompany ? feedbackItems.filter((item) => i
       id:new Date().getTime(),
       upvoteCount:0,
       text:text,
-      company:companyName,
+      company:companyName.charAt(0).toUpperCase() + companyName.slice(1),
       badgeLetter:companyName?.substring(0,1).toUpperCase(),
       daysAgo:0,
     }
