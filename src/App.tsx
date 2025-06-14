@@ -8,7 +8,13 @@ function App() {
   const [feedbackItems, setFeedbackItems] = useState<feedbackItemProp[]>([]);
   const [loading,setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [selectedCompany,setSelectedCompany] = useState("");
   
+const filteredFeedbackItems = selectedCompany ? feedbackItems.filter((item) => item.company === selectedCompany) : feedbackItems;
+
+  const handleSelectCompany= (company:string) => {
+        setSelectedCompany(company);
+  }
   const companyList = feedbackItems.map((item)=>(item.company)).filter((company,index,array) =>{
     return array.indexOf(company)==index;
   })
@@ -60,9 +66,8 @@ function App() {
   }, []);
   return (
     <>
-      <Container feedbackItems={feedbackItems} loading={loading} errorMessage = {errorMessage} handleAddToList={handleAddToList} />
-      <HashtagList companyList = {companyList}/>
-
+      <Container feedbackItems={filteredFeedbackItems} loading={loading} errorMessage = {errorMessage} handleAddToList={handleAddToList} />
+      <HashtagList companyList = {companyList} onSelectCompany={handleSelectCompany}/>
     </>
   )
 }
