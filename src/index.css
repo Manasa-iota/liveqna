@@ -363,11 +363,11 @@ form button span::selection {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-.feedback:hover {
+/* .feedback:hover {
   background-color: #fff;
-}
+} */
 
-.feedback:hover > button,
+.feedback:hover  > button,
 .feedback:hover > div:nth-child(2),
 .feedback:hover > div:nth-child(3),
 .feedback:hover > p:nth-child(4) {
