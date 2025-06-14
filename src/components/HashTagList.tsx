@@ -1,10 +1,14 @@
-export default function HashTagList() {
+export default function HashTagList({ companyList }) {
   return (
     <>
         <ul className="hashtags">
-            <li>
-              <button>#google</button>  
+          {
+            companyList.map(company => (
+              <li>
+              <button>#{company}</button>  
             </li> 
+            ))
+          }
         </ul>
     </>
   )

@@ -9,6 +9,9 @@ function App() {
   const [loading,setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   
+  const companyList = feedbackItems.map((item)=>(item.company)).filter((company,index,array) =>{
+    return array.indexOf(company)==index;
+  })
   const handleAddToList= async (text:string) =>{
     const companyName= text.split(' ').find((word)=>word.includes('#'))!.substring(1);
     const newItem :feedbackItemProp ={
@@ -58,7 +61,7 @@ function App() {
   return (
     <>
       <Container feedbackItems={feedbackItems} loading={loading} errorMessage = {errorMessage} handleAddToList={handleAddToList} />
-      <HashTagList />
+      <HashTagList companyList = {companyList}/>
 
     </>
   )
