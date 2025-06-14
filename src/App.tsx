@@ -1,5 +1,5 @@
 import Container from "./components/layout/Container"
-import HashTagList from "./components/HashTagList"
+import HashtagList from "./components/hashtag/HashTagList";
 import { useEffect, useState } from "react"
 import { type feedbackItemProp } from "./lib/types"
 
@@ -61,7 +61,7 @@ function App() {
   return (
     <>
       <Container feedbackItems={feedbackItems} loading={loading} errorMessage = {errorMessage} handleAddToList={handleAddToList} />
-      <HashTagList companyList = {companyList}/>
+      <HashtagList companyList = {companyList}/>
 
     </>
   )
