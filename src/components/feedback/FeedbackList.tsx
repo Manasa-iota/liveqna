@@ -1,10 +1,15 @@
 import FeedbackItem from "./FeedbackItem"
 import Spinner from "../Spinner";
 import ErrorMessage from "../ErrorMessage";
-import { useFeedbackItemsContext } from "../../contexts/FeedBackItemsContextProvider";
-
+import { useEffect } from "react";
+import useFeedbackItemsStore from "../../stores/feedbackitems";
+  
 export default function FeedbackList() {
-  const {filteredFeedbackItems,loading,errorMessage} = useFeedbackItemsContext();
+  const { getFilteredFeedbackItems, loading, errorMessage, fetchFeedbackItems } = useFeedbackItemsStore();
+  useEffect(() => {
+    fetchFeedbackItems();
+  }, [fetchFeedbackItems]);
+  const filteredFeedbackItems = getFilteredFeedbackItems();
   return (
     <ol>
       {loading && <Spinner />}

@@ -44,11 +44,7 @@ export default function FeedbackForm({
           setTimeout(() => {
             setShowInvalidIndicator(false);
           }, 2000);
-          return;
         }
-
-        onHandleToList(text);
-        setText("");
       }}
     >
       <textarea
@@ -58,7 +54,7 @@ export default function FeedbackForm({
         placeholder="placeholder"
         spellCheck={false}
       />
-      <label htmlFor="feedback-textareak">
+      <label htmlFor="feedback-textarea">
         Enter Your feedback , remember to # the company
       </label>
       <div>
