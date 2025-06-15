@@ -1,19 +1,15 @@
 import FeedbackItem from "./FeedbackItem"
 import Spinner from "../Spinner";
 import ErrorMessage from "../ErrorMessage";
-import {type  ContainerProps } from "../layout/Container";
+import { useFeedbackItemsContext } from "../../contexts/FeedBackItemsContextProvider";
 
-type FeedbackListProps = Omit<ContainerProps, 'handleAddToList'> & {
-  handleAddToList: (text: string) => void;
-};
-
- 
-export default function FeedbackList({feedbackItems,loading,errorMessage}:FeedbackListProps) {
+export default function FeedbackList() {
+  const {filteredFeedbackItems,loading,errorMessage} = useFeedbackItemsContext();
   return (
     <ol>
       {loading && <Spinner />}
       {errorMessage && <ErrorMessage message={errorMessage} />}
-      {feedbackItems.map((feedbackItem) => (
+      {filteredFeedbackItems.map((feedbackItem) => (
         <FeedbackItem key={feedbackItem.id} {...feedbackItem} />
       ))}
     </ol>

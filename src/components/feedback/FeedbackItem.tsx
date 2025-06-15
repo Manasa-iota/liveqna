@@ -1,8 +1,8 @@
 import { TriangleUpIcon } from "@radix-ui/react-icons";
-import { type feedbackItemProp } from "../../lib/types";
+import { type TFeedbackItem } from "../../lib/types";
 import { useState } from "react";
 
-export default function FeedbackItem({ upvoteCount, badgeLetter, company, text, daysAgo }: feedbackItemProp) {
+export default function FeedbackItem({ upvoteCount, badgeLetter, company, text, daysAgo }: TFeedbackItem) {
   const [toggleExpand,setToggleExand] = useState(false);
   const [count,setCount] =useState(upvoteCount);
 

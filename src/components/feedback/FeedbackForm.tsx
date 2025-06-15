@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { MAX_CHARACTERS } from "../../lib/constants";
 export default function FeedbackForm({
-  handleAddToList,
+  onHandleToList,
 }: {
-  handleAddToList: (text: string) => void;
+  onHandleToList: (text: string) => void;
 }) {
   const [text, setText] = useState("");
   const remainingCharacters = MAX_CHARACTERS - text.length;
@@ -33,7 +33,10 @@ export default function FeedbackForm({
         if (isValid(text)) {
           setShowValidIndicator(true);
           setShowInvalidIndicator(false);
-          handleAddToList(text);
+          setTimeout(() => {
+            setShowValidIndicator(false);
+          }, 500);
+          onHandleToList(text);
           setText("");
         } else {
           setShowValidIndicator(false);
@@ -44,7 +47,7 @@ export default function FeedbackForm({
           return;
         }
 
-        handleAddToList(text);
+        onHandleToList(text);
         setText("");
       }}
     >
