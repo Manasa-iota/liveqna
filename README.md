@@ -1,54 +1,59 @@
-# React + TypeScript + Vite
+LiveQnA is a real-time audience interaction interface that allows users to submit feedback or questions with hashtag-based categorization. It enables simple company-based filtering and real-time visual updates, making it ideal for live events, mock interviews, and feedback systems.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Features
+--------
 
-Currently, two official plugins are available:
+1. **Submit Questions with Hashtags**
+   - Users can submit text-based feedback/questions.
+   - Input must include a company hashtag (e.g., #Amazon), or submission is marked invalid.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+2. **Hashtag-Based Company Categorization**
+   - Feedback is automatically categorized based on the hashtag used.
+   - The hashtag (e.g., #Google) is parsed to extract the company name.
 
-## Expanding the ESLint configuration
+3. **Filter by Selected Company**
+   - Users can click on a company hashtag to filter and view only the feedback/questions related to that company.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+4. **Visual Validation on Submission**
+   - Green/red form highlighting shows whether a submission is valid or invalid.
+   - Input character limit enforced (MAX_CHARACTERS constant).
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+5. **Loading and Error Handling**
+   - Loading spinner shown while fetching feedbacks.
+   - Error message shown if feedback fetch fails.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+6. **Persistent Feedback Storage (Mock API)**
+   - Feedback is sent to a mock API (bytegrad.com) using fetch().
+   - Duplicate feedback items are filtered out by ID.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+7. **Dynamic UI Using Zustand**
+   - State management (feedback list, selected company, loading/error) handled with Zustand.
+   - Custom hooks and store for modular and reactive updates.
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+8. **Reusable, Modular Component Design**
+   - Components: FeedbackForm, FeedbackList, HashtagList, etc.
+   - Styled with CSS modules and utility classes.
+
+Tech Stack
+----------
+
+- React + TypeScript
+- Zustand (State Management)
+- Vite (Build Tool)
+- Lucide-react (Icons)
+- CSS Modules
+
+Setup Instructions
+------------------
+
+### Prerequisites
+- Node.js >= 16.x
+- pnpm / npm / yarn
+
+### Installation
+
+```bash
+git clone https://github.com/yourusername/liveqna.git
+cd liveqna
+npm install
+npm run dev
