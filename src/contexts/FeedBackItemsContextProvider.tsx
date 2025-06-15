@@ -1,5 +1,6 @@
-import { useState, useMemo, useEffect, createContext, useContext } from "react";
+import { useState, useMemo, createContext,  } from "react";
 import { type TFeedbackItem } from "../lib/types";
+import { useFeedbackItems } from "../components/hooks";
 
 type FeedBackItemsContextProviderProps = {
   children: React.ReactNode;
@@ -23,10 +24,7 @@ export const FeedbackItemContext = createContext<TFeedbackItemsContext | null>(
 export default function FeedBackItemsContextProvider({
   children,
 }: FeedBackItemsContextProviderProps) {
-  const [feedbackItems, setFeedbackItems] = useState<TFeedbackItem[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
-
+  const { feedbackItems, loading, errorMessage, setFeedbackItems } = useFeedbackItems();
   const companyList = useMemo(
     () =>
       feedbackItems
@@ -64,32 +62,7 @@ export default function FeedBackItemsContextProvider({
     );
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      try {
-        const res = await fetch(
-          "https://bytegrad.com/course-assets/projects/corpcomment/api/feedbacks"
-        );
-        if (!res.ok) {
-          throw new Error("Failed to fetch");
-        }
-        const data = await res.json();
-        if (!data.feedbacks || !Array.isArray(data.feedbacks)) {
-          throw new Error("Invalid data format");
-        }
 
-        setFeedbackItems(data.feedbacks);
-      } catch (error) {
-        console.error(error);
-        setErrorMessage("Something went wrong");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
   const [selectedCompany, setSelectedCompany] = useState("");
 
   const filteredFeedbackItems = useMemo(
@@ -120,12 +93,4 @@ export default function FeedBackItemsContextProvider({
       {children}
     </FeedbackItemContext.Provider>
   );
-}
-
-export function useFeedbackItemsContext() {
-  const context = useContext(FeedbackItemContext);
-  if (!context) {
-    throw new Error("FeedbackItemsContext is not defined");
-  }
-  return context;
 }
